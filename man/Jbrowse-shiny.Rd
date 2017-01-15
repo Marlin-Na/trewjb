@@ -31,6 +31,10 @@ applications and interactive Rmd documents.
 \details{
 \code{renderJbrowse} should return with \link[trewjb]{iframeJbrowse}.
 }
+\note{
+It seems that the built-in RStudio viewer does not support iframe element,
+    thus please consider using a web browser instead.
+}
 \examples{
 if (interactive() && require(shiny))
 shinyApp(

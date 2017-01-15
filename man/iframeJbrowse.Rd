@@ -2,16 +2,31 @@
 % Please edit documentation in R/trewjb.R
 \name{iframeJbrowse}
 \alias{iframeJbrowse}
-\title{Create iframe view for Jbrowse from a url}
+\title{Create iframe htmlwidget from a url.}
 \usage{
 iframeJbrowse(link, width = NULL, height = NULL, elementId = NULL)
 }
+\arguments{
+\item{link}{Length-one character vector representing a url. It can be generagetd
+by \link[trewjb]{getJbrowseLink}.}
+
+\item{width, height, elementId}{Passed to htmlwidget.}
+}
 \description{
-A sample url is
-"http://180.208.58.19/jbrowse/?data=data/hg19&loc=chr6:30309362..30310357&tracks=DNA,all_m6A,gene_model&highlight=chr6:30309513..30310230&nav=0&tracklist=0&overview=0" .
+Create a htmlwidget that containing a iframe view for Jbrowse from a url.
+}
+\note{
+It seems that the built-in RStudio viewer does not support iframe element,
+    thus please consider using a web browser instead.
 }
 \examples{
-iframeJbrowse("http://180.208.58.19/jbrowse/?data=data/hg19&loc=chr6:30309362..30310357&tracks=DNA,all_m6A,gene_model&highlight=chr6:30309513..30310230&nav=0&tracklist=0&overview=0")
+if (interactive()) {
+    url <- getJbrowseLink("hg19", "chr8", 92114847, 92231464,
+        hight_start = 92150113, hight_end = 92152064,
+        tracks = c("DNA", "gene_model", "all_m6A"),
+        show_tracklist = TRUE, show_overview = TRUE)
+    iframeJbrowse(url)
+}
 
 }
 

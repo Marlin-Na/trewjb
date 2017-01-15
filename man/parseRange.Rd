@@ -2,9 +2,16 @@
 % Please edit documentation in R/trewjb.R
 \name{parseRange}
 \alias{parseRange}
-\title{parseRange}
+\title{Parse and resize range}
 \usage{
 parseRange(start, end, resizeFactor = 1)
+}
+\arguments{
+\item{start, end}{Length-one numeric vector.}
+
+\item{resizeFactor}{Length-one numeric vector representing how many times the viewing range should
+be as the range passed by the arguments. 1.5 is a proper value for viewing
+a relative large range (i.e. gene).}
 }
 \description{
 Used internally to resize start and end of a given range and paste them together.

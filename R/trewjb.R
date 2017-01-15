@@ -1,6 +1,6 @@
 
 
-#' getJbrowseLink
+#' Generate a url to TREW genome browser
 #'
 #' Generate a link to view desired range on the TREW browser according to the
 #' suppied arguments.
@@ -77,9 +77,16 @@ getJbrowseLink <- function(genome,
 }
 
 # TODO: not export it
-#' parseRange
+#' Parse and resize range
 #'
 #' Used internally to resize start and end of a given range and paste them together.
+#'
+#' @param start,end
+#'     Length-one numeric vector.
+#' @param resizeFactor
+#'     Length-one numeric vector representing how many times the viewing range should
+#'     be as the range passed by the arguments. 1.5 is a proper value for viewing
+#'     a relative large range (i.e. gene).
 #'
 #' @export
 parseRange <- function(start, end, resizeFactor = 1) {
@@ -106,15 +113,29 @@ parseRange <- function(start, end, resizeFactor = 1) {
 
 
 
-#' Create iframe view for Jbrowse from a url
+#' Create iframe htmlwidget from a url.
 #'
-#' A sample url is
-#' "http://180.208.58.19/jbrowse/?data=data/hg19&loc=chr6:30309362..30310357&tracks=DNA,all_m6A,gene_model&highlight=chr6:30309513..30310230&nav=0&tracklist=0&overview=0" .
+#' Create a htmlwidget that containing a iframe view for Jbrowse from a url.
+#'
+#' @param link
+#'     Length-one character vector representing a url. It can be generagetd
+#'     by \link[trewjb]{getJbrowseLink}.
+#' @param width,height,elementId
+#'     Passed to htmlwidget.
+#'
+#' @note It seems that the built-in RStudio viewer does not support iframe element,
+#'     thus please consider using a web browser instead.
 #'
 #' @examples
-#' iframeJbrowse("http://180.208.58.19/jbrowse/?data=data/hg19&loc=chr6:30309362..30310357&tracks=DNA,all_m6A,gene_model&highlight=chr6:30309513..30310230&nav=0&tracklist=0&overview=0")
+#' if (interactive()) {
+#'     url <- getJbrowseLink("hg19", "chr8", 92114847, 92231464,
+#'         hight_start = 92150113, hight_end = 92152064,
+#'         tracks = c("DNA", "gene_model", "all_m6A"),
+#'         show_tracklist = TRUE, show_overview = TRUE)
+#'     iframeJbrowse(url)
+#' }
 #'
-#' @import htmlwidgets
+#' @import htmltools htmlwidgets
 #'
 #' @export
 iframeJbrowse <- function(link, width = NULL, height = NULL, elementId = NULL) {
@@ -166,6 +187,11 @@ iframeJbrowse <- function(link, width = NULL, height = NULL, elementId = NULL) {
 #' @name Jbrowse-shiny
 #'
 #' @details \code{renderJbrowse} should return with \link[trewjb]{iframeJbrowse}.
+#'
+#' @note It seems that the built-in RStudio viewer does not support iframe element,
+#'     thus please consider using a web browser instead.
+#'
+#' @import htmlwidgets
 #'
 #' @examples
 #' if (interactive() && require(shiny))

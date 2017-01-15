@@ -2,7 +2,7 @@
 % Please edit documentation in R/trewjb.R
 \name{getJbrowseLink}
 \alias{getJbrowseLink}
-\title{getJbrowseLink}
+\title{Generate a url to TREW genome browser}
 \usage{
 getJbrowseLink(genome, chromosome, range_start, range_end, hight_start,
   hight_end, tracks = c("DNA", "gene_model"),
