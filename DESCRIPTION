@@ -1,7 +1,7 @@
 Package: trewjb
 Type: Package
 Title: Access TREW Genome Browser
-Version: 0.0.0.9000
+Version: 0.1.0
 Author: Jialin Ma
 Maintainer: Jialin Ma <jialin.ma14@student.xjtlu.edu.cn>
 Description: This is a simple package used to access TREW genome browser at
